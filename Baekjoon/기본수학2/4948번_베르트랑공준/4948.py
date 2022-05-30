@@ -1,29 +1,25 @@
-import math
-import sys
+num = []
 
-def is_prime(n) :
-    if n == 2 :
-        return True
+for i in range(2, 246913):
+    cnt = 0
 
-    if n % 2 == 0 :
-        return False
-    
-    for i in range(2, int(math.sqrt(n)) + 1) :
-        if n % i == 0 :
-            return False
+    for p in range(2, int(i**0.5)+1):
+        if i % p == 0:
+            cnt += 1
+            break
 
-    return True
+    if cnt == 0:
+        num.append(i)
 
 while True:
-    n = int(sys.stdin.readline())
+    n = int(input())
+    res = 0
 
-    if n == 0 :
+    if n == 0:
         break
 
-    prime_cnt = 0
+    for i in num:
+        if n < i <= 2*n:
+            res += 1
 
-    for i in range(n+1, (2*n)+1) :
-        if is_prime(i) :
-            prime_cnt += 1
-
-    print(prime_cnt)
+    print(res)
